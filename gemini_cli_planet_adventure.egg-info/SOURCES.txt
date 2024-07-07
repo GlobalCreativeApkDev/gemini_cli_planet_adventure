@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+gemini_cli_planet_adventure/gemini_cli_planet_adventure.py
+gemini_cli_planet_adventure.egg-info/PKG-INFO
+gemini_cli_planet_adventure.egg-info/SOURCES.txt
+gemini_cli_planet_adventure.egg-info/dependency_links.txt
+gemini_cli_planet_adventure.egg-info/entry_points.txt
+gemini_cli_planet_adventure.egg-info/top_level.txt

@@ -1,0 +1,2 @@
+[console_scripts]
+gemini_cli_planet_adventure = gemini_cli_planet_adventure.gemini_cli_planet_adventure:main

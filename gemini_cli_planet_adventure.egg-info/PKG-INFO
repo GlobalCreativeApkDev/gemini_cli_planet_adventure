@@ -1,3 +1,16 @@
+Metadata-Version: 2.1
+Name: gemini_cli_planet_adventure
+Version: 1
+Summary: This package contains implementation of an adventure game on command-line interface with Google Gemini AI integrated into it.
+Home-page: https://github.com/GlobalCreativeApkDev/gemini_cli_planet_adventure
+Author: GlobalCreativeApkDev
+Author-email: globalcreativeapkdev2022@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # gemini_cli_planet_adventure
 
 **Gemini CLI Planet Adventure** is an adventure game on command-line interface with Google Gemini AI integrated into it.
