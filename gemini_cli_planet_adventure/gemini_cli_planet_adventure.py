@@ -188,9 +188,6 @@ def clear():
 # Creating necessary classes.
 
 
-# TODO: implement more classes and __str__ method in the classes
-
-
 ###########################################
 # ADVENTURE MODE
 ###########################################
@@ -253,6 +250,20 @@ class Action:
             return False
         return False
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> Action
         return copy.deepcopy(self)
@@ -274,6 +285,20 @@ class AwakenBonus:
         self.crit_rate_up: mpf = crit_rate_up
         self.crit_damage_up: mpf = crit_damage_up
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> AwakenBonus
         return copy.deepcopy(self)
@@ -288,6 +313,20 @@ class Battle:
         # type: (Player) -> None
         self.player1: Player = player1
         self.reward: Reward = Reward()
+
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
 
     def clone(self):
         # type: () -> Battle
@@ -305,6 +344,9 @@ class PVPBattle(Battle):
         self.whose_turn: Player or None = None
         self.winner: Player or None = None
         self.player2: Player = player2
+        self.reward = Reward(mpf("10") ** (5 * self.player2.level),
+                             mpf("10") ** (5 * self.player2.level - 2),
+                             mpf("10") ** (5 * self.player2.level))
 
     def get_someone_to_move(self):
         # type: () -> None
@@ -615,6 +657,20 @@ class LegendaryCreatureInventory:
         # type: () -> list
         return self.__legendary_creatures
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> LegendaryCreatureInventory
         return copy.deepcopy(self)
@@ -643,6 +699,20 @@ class ItemInventory:
     def get_items(self):
         # type: () -> list
         return self.__items
+
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
 
     def clone(self):
         # type: () -> ItemInventory
@@ -702,6 +772,20 @@ class BattleTeam:
             if legendary_creature.get_is_alive():
                 return False
         return True
+
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
 
     def clone(self):
         # type: () -> BattleTeam
@@ -903,6 +987,20 @@ class LegendaryCreature:
         self.curr_magic_points -= active_skill.magic_points_cost
         return True
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> LegendaryCreature
         return copy.deepcopy(self)
@@ -931,6 +1029,20 @@ class Skill:
         self.heal_amount *= mpf("1.25") * self.level
         self.level += 1
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> Skill
         return copy.deepcopy(self)
@@ -957,6 +1069,20 @@ class Item:
         self.description: str = description
         self.dollars_cost: mpf = dollars_cost
         self.sell_dollars_gain: mpf = dollars_cost / 5
+
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
 
     def clone(self):
         # type: () -> Item
@@ -1115,6 +1241,20 @@ class ExerciseGym:
         # type: () -> list
         return self.__training_options
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> ExerciseGym
         return copy.deepcopy(self)
@@ -1133,6 +1273,20 @@ class TrainingOption:
         self.player_defense_gain: mpf = player_defense_gain
         self.player_speed_gain: mpf = player_speed_gain
         self.player_dexterity_gain: mpf = player_dexterity_gain
+
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
 
     def clone(self):
         # type: () -> TrainingOption
@@ -1158,6 +1312,20 @@ class GameCharacter:
         # type: (str) -> None
         self.character_id: str = str(uuid.uuid1())
         self.name: str = name
+
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
 
     def clone(self):
         # type: () -> GameCharacter
@@ -1204,11 +1372,27 @@ class Player(GameCharacter):
         self.city: City or None = None  # initial value
         self.location: AdventureModeLocation = AdventureModeLocation(0, 0)
 
+    def is_alive(self):
+        # type: () -> bool
+        return self.curr_hp > 0
+
+    def attack(self, player):
+        # type: (Player) -> None
+        self.attack_gauge = self.MIN_ATTACK_GAUGE
+        raw_damage: mpf = self.attack_power - player.defense
+        damage: mpf = raw_damage if raw_damage > mpf("0") else mpf("0")
+        player.curr_hp -= damage
+        print(str(self.name) + " dealt " + str(damage) + " damage on " + str(player.name) + "!")
+
     def recharge_stamina(self):
         # type: () -> None
         self.stamina += mpf("5")
         if self.stamina >= self.MAX_STAMINA:
             self.stamina = self.MAX_STAMINA
+
+    def recover(self):
+        # type: () -> None
+        self.curr_hp = self.max_hp
 
     def move_up(self):
         # type: () -> bool
@@ -1293,6 +1477,12 @@ class Player(GameCharacter):
         while self.exp >= self.required_exp:
             self.level += 1
             self.required_exp *= mpf("10") ** self.level
+            self.max_hp += self.level * 5
+            self.recover()
+            self.attack_power += self.level * 5
+            self.defense += self.level * 5
+            self.speed += self.level * 5
+            self.dexterity += self.level * 5
 
     def purchase_item(self, item):
         # type: (Item) -> bool
@@ -1398,16 +1588,6 @@ class Player(GameCharacter):
         self.dexterity += option.player_dexterity_gain
         return True
 
-    # TODO: implement more methods
-
-    def interact_with_npc(self, npc):
-        # type: (NPC) -> None
-        pass  # TODO: implement this method
-
-    def take_on_mission(self):
-        # type: () -> None
-        pass  # TODO: implement this method
-
 
 class AIPlayer(Player):
     """
@@ -1430,6 +1610,20 @@ class Mission:
         self.description: str = description
         self.clear_reward: Reward = clear_reward
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> Mission
         return copy.deepcopy(self)
@@ -1449,6 +1643,20 @@ class ItemShop:
         # type: () -> list
         return self.__items_sold
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> ItemShop
         return copy.deepcopy(self)
@@ -1466,6 +1674,20 @@ class Reward:
         self.player_reward_dollars: mpf = player_reward_dollars
         self.legendary_creature_reward_exp: mpf = legendary_creature_reward_exp
 
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
+
     def clone(self):
         # type: () -> Reward
         return copy.deepcopy(self)
@@ -1480,6 +1702,20 @@ class AdventureModeLocation:
         # type: (int, int) -> None
         self.tile_x: int = tile_x
         self.tile_y: int = tile_y
+
+    def __str__(self):
+        # type: () -> str
+        res: str = str(type(self).__name__) + "("  # initial value
+        index: int = 0  # initial value
+        for item in vars(self).items():
+            res += str(item[0]) + "=" + str(item[1])
+
+            if index < len(vars(self).items()) - 1:
+                res += ", "
+
+            index += 1
+
+        return res + ")"
 
     def clone(self):
         # type: () -> AdventureModeLocation
@@ -1560,15 +1796,18 @@ def main() -> int:
     player_name: str = ""  # initial value
 
     # Gemini Generative Model
-    model = gemini.GenerativeModel(model_name="gemini-1.5-pro",
-                                       generation_config={
-                                           "temperature": 1,
-                                           "top_p": 0.95,
-                                           "top_k": 64,
-                                           "max_output_tokens": 8192,
-                                           "response_mime_type": "text/plain",
-                                       },
-                                       safety_settings=safety_settings)  # initial value
+    generation_config = {
+        "temperature": 1,
+        "top_p": 0.95,
+        "top_k": 64,
+        "max_output_tokens": 8192,
+    }
+
+    model = gemini.GenerativeModel(
+        model_name="gemini-1.5-pro",
+        generation_config=generation_config,
+        safety_settings=safety_settings
+    )
 
     print("Enter \"NEW GAME\" to create new saved game data.")
     print("Enter \"LOAD GAME\" to load existing saved game data.")
@@ -1603,8 +1842,94 @@ def main() -> int:
                 saved_game_data.player_data.add_legendary_creature(new_legendary_creature)
                 saved_game_data.player_data.add_legendary_creature_to_team(new_legendary_creature)
 
-            # TODO: initialize the city map
+            # Generating the map of the city where the player is at.
+            city_width: int = random.randint(6, 10)
+            city_height: int = random.randint(6, 10)
+            city_tiles: list = []  # initial value
+            portals: int = 0  # initial value
+            for y in range(city_height):
+                curr_row: list = []
+                for x in range(city_width):
+                    if x == 0 and y == 0:
+                        curr_tile: str = random.choice(["DOWNTOWN", "SUBURB", "PARK", "BEACH"])
+                        if curr_tile == "DOWNTOWN":
+                            curr_row.append(DowntownTile())
+                        elif curr_tile == "SUBURB":
+                            curr_row.append(SuburbTile())
+                        elif curr_tile == "PARK":
+                            curr_row.append(ParkTile())
+                        elif curr_tile == "BEACH":
+                            curr_row.append(BeachTile())
+                    elif portals == 0:
+                        if x == city_width - 1 and y == city_height - 1:
+                            portals += 1
+                            curr_row.append(PortalTile())
+                        else:
+                            curr_tile: str = random.choice(["PORTAL", "DOWNTOWN", "SUBURB", "PARK", "BEACH"])
+                            if curr_tile == "PORTAL":
+                                curr_row.append(PortalTile())
+                            elif curr_tile == "DOWNTOWN":
+                                curr_row.append(DowntownTile())
+                            elif curr_tile == "SUBURB":
+                                curr_row.append(SuburbTile())
+                            elif curr_tile == "PARK":
+                                curr_row.append(ParkTile())
+                            elif curr_tile == "BEACH":
+                                curr_row.append(BeachTile())
+                    else:
+                        curr_tile: str = random.choice(["DOWNTOWN", "SUBURB", "PARK", "BEACH"])
+                        if curr_tile == "DOWNTOWN":
+                            curr_row.append(DowntownTile())
+                        elif curr_tile == "SUBURB":
+                            curr_row.append(SuburbTile())
+                        elif curr_tile == "PARK":
+                            curr_row.append(ParkTile())
+                        elif curr_tile == "BEACH":
+                            curr_row.append(BeachTile())
+                city_tiles.append(curr_row)
+            convo = model.start_chat(history=[
+            ])
+            convo.send_message("Please enter a good name of a fictional city (safe one word response only please)!")
+            city_name: str = str(convo.last.text)
+            city: City = City(city_name, city_tiles)
 
+            # Spawn player
+            saved_game_data.player_data.city = city
+            saved_game_data.player_data.location = AdventureModeLocation(0, 0)
+            city.get_tile_at(0, 0).add_game_character(saved_game_data.player_data)
+
+            # Spawn 5 to 10 random AI players.
+            num_ai_players: int = random.randint(5, 10)
+            for i in range(num_ai_players):
+                tile_x: int = random.randint(0, len(city.get_tiles()[0]) - 1)
+                tile_y: int = random.randint(0, len(city.get_tiles()) - 1)
+                while tile_x == 0 and tile_y == 0:
+                    tile_x = random.randint(0, len(city.get_tiles()[0]) - 1)
+                    tile_y = random.randint(0, len(city.get_tiles()) - 1)
+
+                time.sleep(20)
+                convo.send_message("Please enter a good male/female game character name "
+                                   "(safe one word response only please)! ")
+                ai_player_name: str = str(convo.last.text)
+                ai_player: AIPlayer = AIPlayer(ai_player_name)
+                average_player_battle_creature_level: int = (sum(legendary_creature.level for legendary_creature in
+                                                                 saved_game_data.player_data.battle_team.get_legendary_creatures())
+                                                             // len(
+                            saved_game_data.player_data.battle_team.get_legendary_creatures()))
+                for j in range(5):
+                    new_legendary_creature: LegendaryCreature = (generate_random_legendary_creature
+                                                                 (random.choice(LegendaryCreature.POTENTIAL_ELEMENTS)))
+                    while new_legendary_creature.level < average_player_battle_creature_level:
+                        new_legendary_creature.exp = new_legendary_creature.required_exp
+                        new_legendary_creature.level_up()
+
+                    ai_player.add_legendary_creature(new_legendary_creature)
+                    ai_player.add_legendary_creature_to_team(new_legendary_creature)
+
+                ai_player.location = AdventureModeLocation(tile_x, tile_y)
+                city.get_tile_at(tile_x, tile_y).add_game_character(ai_player)
+
+            game_started = True
         else:
             clear()
 
@@ -1636,9 +1961,11 @@ def main() -> int:
                 "max_output_tokens": saved_game_data.max_output_tokens,
             }
 
-            model = gemini.GenerativeModel(model_name="gemini-1.5-pro",
-                                           generation_config=generation_config,
-                                           safety_settings=safety_settings)
+            model = gemini.GenerativeModel(
+                model_name="gemini-1.5-pro",
+                generation_config=generation_config,
+                safety_settings=safety_settings
+            )
             game_started = True
 
     # Start playing the game.
@@ -1653,11 +1980,482 @@ def main() -> int:
 
         clear()
 
-    # TODO: implement in-game functionality
+        print("Below is the representation of the city you are currently in:\n")
+        print(str(saved_game_data.player_data.city) + "\n")
 
-    # Start playing the game.
-    while True:
-        clear()
+        # Recharging player's stamina
+        saved_game_data.player_data.recharge_stamina()
+
+        # Implementing in-game functionality (including interacting with NPC and taking on a mission).
+        options = [
+            "Move (up, down, left, or right).",
+            "Place rune on legendary creature.",
+            "Level up a rune.",
+            "Remove a rune.",
+            "Buy an item.",
+            "Sell an item.",
+            "Use an item.",
+            "Manage battle team.",
+            "Go to gym.",
+            "Interact with an NPC.",
+            "Take on a mission.",
+            "View your stats."
+        ]
+
+        print("Options:")
+        for i, option in enumerate(options, 1):
+            print(f"{i}. {option}")
+
+        choice: str = input("Please enter the number of the action you want to do: ")
+        while choice not in [str(i) for i in range(1, len(options) + 1)]:
+            print("Options:")
+            for i, option in enumerate(options, 1):
+                print(f"{i}. {option}")
+
+            choice = input("Sorry, invalid input! Please enter the number of the action you want to do: ")
+
+        if choice == "1":
+            direction: str = input("Please enter \"UP\", \"DOWN\", \"LEFT\", or \"RIGHT\"! ")
+            while direction not in ["UP", "DOWN", "LEFT", "RIGHT"]:
+                direction = input("Sorry, invalid input! Please enter \"UP\", \"DOWN\", \"LEFT\", or \"RIGHT\"! ")
+
+            if direction == "UP":
+                saved_game_data.player_data.move_up()
+            elif direction == "DOWN":
+                saved_game_data.player_data.move_down()
+            elif direction == "LEFT":
+                saved_game_data.player_data.move_left()
+            elif direction == "RIGHT":
+                saved_game_data.player_data.move_right()
+
+            # Clearing the command line window.
+            clear()
+
+            # Checking the type of tile the player lands on.
+            curr_tile: CityTile = saved_game_data.player_data.get_city_tile()
+            if isinstance(curr_tile, PortalTile):
+                # Generate the city where the player is at.
+                city_width: int = random.randint(6, 10)
+                city_height: int = random.randint(6, 10)
+                city_tiles: list = []  # initial value
+                portals: int = 0  # initial value
+                for y in range(city_height):
+                    curr_row: list = []
+                    for x in range(city_width):
+                        if x == 0 and y == 0:
+                            curr_tile: str = random.choice(["DOWNTOWN", "SUBURB", "PARK", "BEACH"])
+                            if curr_tile == "DOWNTOWN":
+                                curr_row.append(DowntownTile())
+                            elif curr_tile == "SUBURB":
+                                curr_row.append(SuburbTile())
+                            elif curr_tile == "PARK":
+                                curr_row.append(ParkTile())
+                            elif curr_tile == "BEACH":
+                                curr_row.append(BeachTile())
+                        elif portals == 0:
+                            if x == city_width - 1 and y == city_height - 1:
+                                portals += 1
+                                curr_row.append(PortalTile())
+                            else:
+                                curr_tile: str = random.choice(["PORTAL", "DOWNTOWN", "SUBURB", "PARK", "BEACH"])
+                                if curr_tile == "PORTAL":
+                                    curr_row.append(PortalTile())
+                                elif curr_tile == "DOWNTOWN":
+                                    curr_row.append(DowntownTile())
+                                elif curr_tile == "SUBURB":
+                                    curr_row.append(SuburbTile())
+                                elif curr_tile == "PARK":
+                                    curr_row.append(ParkTile())
+                                elif curr_tile == "BEACH":
+                                    curr_row.append(BeachTile())
+                        else:
+                            curr_tile: str = random.choice(["DOWNTOWN", "SUBURB", "PARK", "BEACH"])
+                            if curr_tile == "DOWNTOWN":
+                                curr_row.append(DowntownTile())
+                            elif curr_tile == "SUBURB":
+                                curr_row.append(SuburbTile())
+                            elif curr_tile == "PARK":
+                                curr_row.append(ParkTile())
+                            elif curr_tile == "BEACH":
+                                curr_row.append(BeachTile())
+                    city_tiles.append(curr_row)
+                convo = model.start_chat(history=[
+                ])
+                convo.send_message("Please enter a good name of a fictional city (safe one word response only please)!")
+                city_name: str = str(convo.last.text)
+                city: City = City(city_name, city_tiles)
+
+                # Spawn player
+                saved_game_data.player_data.city = city
+                saved_game_data.player_data.location = AdventureModeLocation(0, 0)
+                city.get_tile_at(0, 0).add_game_character(saved_game_data.player_data)
+
+                # Spawn 5 to 10 random AI players.
+                num_ai_players: int = random.randint(5, 10)
+                for i in range(num_ai_players):
+                    tile_x: int = random.randint(0, len(city.get_tiles()[0]) - 1)
+                    tile_y: int = random.randint(0, len(city.get_tiles()) - 1)
+                    while tile_x == 0 and tile_y == 0:
+                        tile_x = random.randint(0, len(city.get_tiles()[0]) - 1)
+                        tile_y = random.randint(0, len(city.get_tiles()) - 1)
+
+                    time.sleep(20)
+                    convo.send_message("Please enter a good male/female game character name "
+                                       "(safe one word response only please)! ")
+                    ai_player_name: str = str(convo.last.text)
+                    ai_player: AIPlayer = AIPlayer(ai_player_name)
+                    average_player_battle_creature_level: int = (sum(legendary_creature.level for legendary_creature in
+                                                                     saved_game_data.player_data.battle_team.get_legendary_creatures())
+                                                                 // len(
+                                saved_game_data.player_data.battle_team.get_legendary_creatures()))
+                    for j in range(5):
+                        new_legendary_creature: LegendaryCreature = (generate_random_legendary_creature
+                                                                     (random.choice(
+                                                                         LegendaryCreature.POTENTIAL_ELEMENTS)))
+                        while new_legendary_creature.level < average_player_battle_creature_level:
+                            new_legendary_creature.exp = new_legendary_creature.required_exp
+                            new_legendary_creature.level_up()
+
+                        ai_player.add_legendary_creature(new_legendary_creature)
+                        ai_player.add_legendary_creature_to_team(new_legendary_creature)
+
+                    ai_player.location = AdventureModeLocation(tile_x, tile_y)
+                    city.get_tile_at(tile_x, tile_y).add_game_character(ai_player)
+
+            else:
+                # Determine if a wild, creature, or PvP battle occurs or not.
+                wild_battle_occurs: bool = random.random() < 0.5
+                if wild_battle_occurs:
+                    wild_legendary_creature: LegendaryCreature = (generate_random_legendary_creature
+                                                                  (random.choice(LegendaryCreature.POTENTIAL_ELEMENTS)))
+                    average_player_battle_creature_level: int = (sum(legendary_creature.level for legendary_creature in
+                                                                     saved_game_data.player_data.battle_team.get_legendary_creatures())
+                                                                 // len(
+                                saved_game_data.player_data.battle_team.get_legendary_creatures()))
+                    while wild_legendary_creature.level < average_player_battle_creature_level:
+                        wild_legendary_creature.exp = wild_legendary_creature.required_exp
+                        wild_legendary_creature.level_up()
+
+                    wild_battle: WildBattle = WildBattle(saved_game_data.player_data, wild_legendary_creature)
+                    while not wild_battle.wild_legendary_creature_caught and not wild_battle.player_fled \
+                            and wild_battle.winner is None:
+                        print("Below are the current stats of your legendary creatures.\n")
+                        creature_number: int = 1
+                        for legendary_creature in saved_game_data.player_data.battle_team.get_legendary_creatures():
+                            print(str(creature_number) + ". " + str(legendary_creature))
+                            creature_number += 1
+
+                        print("\n")
+                        print("Below are the current stats of the wild legendary creature.\n")
+                        print(wild_legendary_creature)
+                        print("\n")
+
+                        wild_battle.get_someone_to_move()
+                        if wild_battle.whose_turn == wild_legendary_creature:
+                            chosen_action: str = random.choice(Action.POSSIBLE_NAMES)
+                            if chosen_action == "NORMAL HEAL":
+                                wild_legendary_creature.have_turn(wild_legendary_creature, None, chosen_action)
+                            elif chosen_action == "NORMAL ATTACK":
+                                target: LegendaryCreature = (
+                                    random.choice(saved_game_data.player_data.battle_team.get_legendary_creatures()))
+                                wild_legendary_creature.have_turn(target, None, chosen_action)
+                            elif chosen_action == "USE SKILL":
+                                skill_to_use: Skill = random.choice(wild_legendary_creature.get_skills())
+                                if skill_to_use.skill_type == "HEAL":
+                                    wild_legendary_creature.have_turn(wild_legendary_creature, skill_to_use,
+                                                                      chosen_action)
+                                elif skill_to_use.skill_type == "ATTACK":
+                                    target: LegendaryCreature = (
+                                        random.choice(
+                                            saved_game_data.player_data.battle_team.get_legendary_creatures()))
+                                    wild_legendary_creature.have_turn(target, skill_to_use, chosen_action)
+                                else:
+                                    pass
+                            else:
+                                pass
+                        else:
+                            print("Enter \"NORMAL ATTACK\" for normal attack!")
+                            print("Enter \"NORMAL HEAL\" for normal heal!")
+                            print("Enter \"USE SKILL\" to use a skill!")
+                            print("Enter \"FLEE\" to flee from the wild battle!")
+                            print("Enter \"CATCH\" to catch wild legendary creature!")
+                            battle_action: str = input("What do you want to do? ")
+                            while battle_action not in ["NORMAL ATTACK", "NORMAL HEAL", "USE SKILL", "FLEE", "CATCH"]:
+                                print("Enter \"NORMAL ATTACK\" for normal attack!")
+                                print("Enter \"NORMAL HEAL\" for normal heal!")
+                                print("Enter \"USE SKILL\" to use a skill!")
+                                print("Enter \"FLEE\" to flee from the wild battle!")
+                                print("Enter \"CATCH\" to catch wild legendary creature!")
+                                battle_action = input("Sorry, invalid input! What do you want to do? ")
+
+                            if battle_action == "NORMAL ATTACK":
+                                wild_battle.whose_turn.have_turn(wild_legendary_creature, None, battle_action)
+                            elif battle_action == "NORMAL HEAL":
+                                wild_battle.whose_turn.have_turn(wild_battle.whose_turn, None, battle_action)
+                            elif battle_action == "USE SKILL":
+                                print("Below are the skills that you can use:\n")
+                                skill_number: int = 1
+                                for skill in wild_battle.whose_turn.get_skills():
+                                    print(str(skill_number) + ". " + str(skill))
+                                    skill_number += 1
+
+                                skill_index: int = int(input("Please enter the index of the skill you want to "
+                                                             "use (1 - " +
+                                                             str(len(wild_battle.whose_turn.get_skills())) + "): "))
+                                while skill_index < 1 or skill_index > len(wild_battle.whose_turn.get_skills()):
+                                    skill_index = int(
+                                        input("Sorry, invalid input! Please enter the index of the skill you want to "
+                                              "use (1 - " +
+                                              str(len(wild_battle.whose_turn.get_skills())) + "): "))
+
+                                skill_to_use: Skill = wild_battle.whose_turn.get_skills()[skill_index - 1]
+                                if skill_to_use.skill_type == "HEAL":
+                                    wild_battle.whose_turn.have_turn(wild_battle.whose_turn, skill_to_use,
+                                                                     battle_action)
+                                elif skill_to_use.skill_type == "ATTACK":
+                                    wild_battle.whose_turn.have_turn(wild_legendary_creature, skill_to_use,
+                                                                     battle_action)
+                                else:
+                                    pass
+                            elif battle_action == "FLEE":
+                                flee_success: bool = random.random() < 0.75
+                                if flee_success:
+                                    print("You successfully fled!")
+                                    wild_battle.player_fled = True
+                                    break
+                                else:
+                                    print("Sorry! You can't run away!")
+                            elif battle_action == "CATCH":
+                                ball_objects: list = [item for item in
+                                                      saved_game_data.player_data.item_inventory.get_items() if
+                                                      isinstance(item, Ball)]
+                                ball_number: int = 1
+                                for ball in ball_objects:
+                                    print(str(ball_number) + ". " + str(ball))
+                                    ball_number += 1
+
+                                ball_index: int = int(input("Please enter the index of the ball you want to use "
+                                                            "(1 - " + str(len(ball_objects)) + "): "))
+                                while ball_index < 1 or ball_index > len(ball_objects):
+                                    ball_index = int(input("Sorry, invalid input! Please enter the index of the ball "
+                                                           "you want to use (1 - " + str(len(ball_objects)) + "): "))
+
+                                ball_to_use: Ball = ball_objects[ball_index - 1]
+                                catch_success: bool = random.random() < ball_to_use.catch_success_rate
+                                if catch_success:
+                                    print("You successfully caught " + str(wild_legendary_creature.name) + "!")
+                                    saved_game_data.player_data.add_legendary_creature(wild_legendary_creature)
+                                    saved_game_data.player_data.add_legendary_creature_to_team(wild_legendary_creature)
+                                else:
+                                    print("Cannot catch " + str(wild_legendary_creature.name) + "!")
+                            else:
+                                pass
+
+                        if not wild_legendary_creature.get_is_alive():
+                            wild_battle.winner = wild_battle.player1.battle_team
+                            print("You won the battle!")
+                            saved_game_data.player_data.claim_reward(wild_battle.reward)
+                            wild_battle.player1.battle_team.recover_all()
+                            break
+
+                        if wild_battle.player1.battle_team.all_died():
+                            wild_battle.winner = BattleTeam([wild_legendary_creature])
+                            print("You lost!")
+                            wild_battle.player1.battle_team.recover_all()
+                            break
+                else:
+                    if len(curr_tile.get_game_characters()) > 1:
+                        creature_battle_occurs: bool = random.random() < 0.5
+                        if creature_battle_occurs:
+                            other_player: Player = random.choice(curr_tile.get_game_characters())
+                            while other_player == saved_game_data.player_data:
+                                other_player = random.choice(curr_tile.get_game_characters())
+
+                            creature_battle: CreatureBattle = CreatureBattle(saved_game_data.player_data, other_player)
+                            while creature_battle.winner is None:
+                                print("Below are the current stats of your legendary creatures.\n")
+                                creature_number: int = 1
+                                for legendary_creature in saved_game_data.player_data.battle_team.get_legendary_creatures():
+                                    print(str(creature_number) + ". " + str(legendary_creature))
+                                    creature_number += 1
+
+                                print("Below are the current stats of your opponent's legendary creatures.\n")
+                                other_creature_number: int = 1
+                                for legendary_creature in creature_battle.player2.battle_team.get_legendary_creatures():
+                                    print(str(other_creature_number) + ". " + str(legendary_creature))
+                                    other_creature_number += 1
+
+                                creature_battle.get_someone_to_move()
+                                if creature_battle.whose_turn in other_player.battle_team.get_legendary_creatures():
+                                    chosen_action: str = random.choice(Action.POSSIBLE_NAMES)
+                                    if chosen_action == "NORMAL HEAL":
+                                        creature_battle.whose_turn.have_turn(creature_battle.whose_turn, None,
+                                                                            chosen_action)
+                                    elif chosen_action == "NORMAL ATTACK":
+                                        target: LegendaryCreature = (
+                                            random.choice(
+                                                saved_game_data.player_data.battle_team.get_legendary_creatures()))
+                                        creature_battle.whose_turn.have_turn(target, None, chosen_action)
+                                    elif chosen_action == "USE SKILL":
+                                        skill_to_use: Skill = random.choice(creature_battle.whose_turn.get_skills())
+                                        if skill_to_use.skill_type == "HEAL":
+                                            creature_battle.whose_turn.have_turn(creature_battle.whose_turn, skill_to_use,
+                                                                                chosen_action)
+                                        elif skill_to_use.skill_type == "ATTACK":
+                                            target: LegendaryCreature = (
+                                                random.choice(
+                                                    saved_game_data.player_data.battle_team.get_legendary_creatures()))
+                                            creature_battle.whose_turn.have_turn(target, skill_to_use, chosen_action)
+                                        else:
+                                            pass
+                                    else:
+                                        pass
+                                else:
+                                    print("Enter \"NORMAL ATTACK\" for normal attack!")
+                                    print("Enter \"NORMAL HEAL\" for normal heal!")
+                                    print("Enter \"USE SKILL\" to use a skill!")
+                                    battle_action: str = input("What do you want to do? ")
+                                    while battle_action not in ["NORMAL ATTACK", "NORMAL HEAL", "USE SKILL"]:
+                                        print("Enter \"NORMAL ATTACK\" for normal attack!")
+                                        print("Enter \"NORMAL HEAL\" for normal heal!")
+                                        print("Enter \"USE SKILL\" to use a skill!")
+                                        battle_action = input("Sorry, invalid input! What do you want to do? ")
+
+                                    if battle_action == "NORMAL ATTACK":
+                                        print("Below is a list of legendary creatures you can attack:\n")
+                                        creature_index: int = 1
+                                        for legendary_creature in other_player.battle_team.get_legendary_creatures():
+                                            print(str(creature_index) + ". " + str(legendary_creature))
+                                            creature_index += 1
+
+                                        target_index: int = int(
+                                            input("Please enter the index of the legendary creature "
+                                                  "you want to attack (1 - " +
+                                                  str(len(other_player.battle_team.get_legendary_creatures())) +
+                                                  "): "))
+                                        while target_index < 1 or target_index > len(
+                                                other_player.battle_team.get_legendary_creatures()):
+                                            target_index = int(
+                                                input(
+                                                    "Sorry, invalid input! Please enter the index of the legendary creature "
+                                                    "you want to attack (1 - " +
+                                                    str(len(other_player.battle_team.get_legendary_creatures())) +
+                                                    "): "))
+
+                                        target_creature: LegendaryCreature = (
+                                            other_player.battle_team.get_legendary_creatures())[target_index - 1]
+                                        creature_battle.whose_turn.have_turn(target_creature, None, battle_action)
+                                    elif battle_action == "NORMAL HEAL":
+                                        creature_battle.whose_turn.have_turn(creature_battle.whose_turn, None,
+                                                                            battle_action)
+                                    elif battle_action == "USE SKILL":
+                                        print("Below are the skills that you can use:\n")
+                                        skill_number: int = 1
+                                        for skill in creature_battle.whose_turn.get_skills():
+                                            print(str(skill_number) + ". " + str(skill))
+                                            skill_number += 1
+
+                                        skill_index: int = int(input("Please enter the index of the skill you want to "
+                                                                     "use (1 - " +
+                                                                     str(len(
+                                                                         creature_battle.whose_turn.get_skills())) + "): "))
+                                        while skill_index < 1 or skill_index > len(
+                                                creature_battle.whose_turn.get_skills()):
+                                            skill_index = int(input(
+                                                "Sorry, invalid input! Please enter the index of the skill you want to "
+                                                "use (1 - " +
+                                                str(len(creature_battle.whose_turn.get_skills())) + "): "))
+
+                                        skill_to_use: Skill = creature_battle.whose_turn.get_skills()[skill_index - 1]
+                                        if skill_to_use.skill_type == "HEAL":
+                                            creature_battle.whose_turn.have_turn(creature_battle.whose_turn, skill_to_use,
+                                                                                battle_action)
+                                        elif skill_to_use.skill_type == "ATTACK":
+                                            print("Below is a list of legendary creatures you can attack:\n")
+                                            creature_index: int = 1
+                                            for legendary_creature in other_player.battle_team.get_legendary_creatures():
+                                                print(str(creature_index) + ". " + str(legendary_creature))
+                                                creature_index += 1
+
+                                            target_index: int = int(
+                                                input("Please enter the index of the legendary creature "
+                                                      "you want to attack (1 - " +
+                                                      str(len(other_player.battle_team.get_legendary_creatures())) +
+                                                      "): "))
+                                            while target_index < 1 or target_index > len(
+                                                    other_player.battle_team.get_legendary_creatures()):
+                                                target_index = int(
+                                                    input(
+                                                        "Sorry, invalid input! Please enter the index of the legendary creature "
+                                                        "you want to attack (1 - " +
+                                                        str(len(other_player.battle_team.get_legendary_creatures())) +
+                                                        "): "))
+
+                                            target_creature: LegendaryCreature = (
+                                                other_player.battle_team.get_legendary_creatures())[target_index - 1]
+                                            creature_battle.whose_turn.have_turn(target_creature, skill_to_use,
+                                                                                battle_action)
+                                        else:
+                                            pass
+                                    else:
+                                        pass
+
+                                    if creature_battle.player2.battle_team.all_died():
+                                        creature_battle.winner = creature_battle.player1.battle_team
+                                        print("You won the battle!")
+                                        saved_game_data.player_data.claim_reward(creature_battle.reward)
+                                        creature_battle.player1.battle_team.recover_all()
+                                        creature_battle.player2.battle_team.recover_all()
+                                        break
+
+                                    if creature_battle.player1.battle_team.all_died():
+                                        creature_battle.winner = creature_battle.player2.battle_team
+                                        print("You lost!")
+                                        creature_battle.player2.claim_reward(creature_battle.reward)
+                                        creature_battle.player1.battle_team.recover_all()
+                                        creature_battle.player2.battle_team.recover_all()
+                                        break
+                        else:
+                            # Checking whether a PvP battle occurs or not.
+                            pvp_battle_occurs: bool = random.random() < 0.5
+                            if pvp_battle_occurs:
+                                other_player: Player = random.choice(curr_tile.get_game_characters())
+                                while other_player == saved_game_data.player_data:
+                                    other_player = random.choice(curr_tile.get_game_characters())
+
+                                pvp_battle: PVPBattle = PVPBattle(saved_game_data.player_data, other_player)
+                                while pvp_battle.winner is None:
+                                    print("Below are your current stats:\n" + str(saved_game_data.player_data))
+                                    print("Below are your opponent's current stats:\n" + str(other_player))
+                                    pvp_battle.get_someone_to_move()
+                                    if pvp_battle.whose_turn == saved_game_data.player_data:
+                                        print("It is your turn to attack!")
+                                        to_attack: str = input("Please enter anything to attack: ")
+                                        saved_game_data.player_data.attack(other_player)
+                                    else:
+                                        print("It is your opponent's turn to attack!")
+                                        other_player.attack(saved_game_data.player_data)
+
+                                    if not saved_game_data.player_data.is_alive():
+                                        pvp_battle.winner = other_player
+                                        print("You lost!")
+                                        other_player.claim_reward(pvp_battle.reward)
+                                        saved_game_data.player_data.recover()
+                                        other_player.recover()
+                                        break
+
+                                    if not other_player.is_alive():
+                                        pvp_battle.winner = saved_game_data.player_data
+                                        print("You won the battle!")
+                                        saved_game_data.player_data.claim_reward(pvp_battle.reward)
+                                        saved_game_data.player_data.recover()
+                                        other_player.recover()
+                                        break
+
+            input("Please enter anything to continue: ")
+        elif choice == "2":
+            clear()
+
 
 
 if __name__ == "__main__":
