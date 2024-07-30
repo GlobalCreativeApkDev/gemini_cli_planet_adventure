@@ -9,7 +9,7 @@ def readme():
 
 setup(
     name='gemini_cli_planet_adventure',
-    version='1',
+    version='1.1',
     packages=['gemini_cli_planet_adventure'],
     url='https://github.com/GlobalCreativeApkDev/gemini_cli_planet_adventure',
     license='MIT',

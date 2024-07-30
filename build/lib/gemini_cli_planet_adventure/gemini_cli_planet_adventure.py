@@ -2800,7 +2800,7 @@ def main() -> int:
             input("Please enter anything to continue: ")
         elif choice == "9":
             clear()
-            if saved_game_data.player_data.stamina < min(option.stamina for option in saved_game_data.gym.get_training_options()):
+            if saved_game_data.player_data.stamina < min(option.stamina_cost for option in saved_game_data.gym.get_training_options()):
                 print("You have insufficient stamina to train in the gym.")
             else:
                 print("You are now at the gym. Below are the training options you can choose.")
